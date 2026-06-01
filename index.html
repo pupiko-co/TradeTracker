@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeTracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>📈 TradeTracker</h1>
+    <p>Správa obchodních pozic</p>
+  </header>
+
+  <main>
+
+    <!-- SOUHRN PORTFOLIA -->
+    <section class="summary">
+      <div class="summary-card">
+        <span class="summary-label">Celkem pozic</span>
+        <span class="summary-value" id="total-count">0</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Celková hodnota</span>
+        <span class="summary-value" id="total-value">$0.00</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Celkový P&L</span>
+        <span class="summary-value" id="total-pnl">$0.00</span>
+      </div>
+    </section>
+
+    <!-- FORMULÁŘ -->
+    <section class="form-section">
+      <h2>Přidat pozici</h2>
+
+      <div class="form-group">
+        <label>Typ pozice</label>
+        <select id="type">
+          <option value="spot">Spot</option>
+          <option value="futures">Futures</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Symbol</label>
+        <input type="text" id="symbol" placeholder="např. BTC/USD" />
+      </div>
+
+      <div class="form-group">
+        <label>Směr</label>
+        <select id="direction">
+          <option value="LONG">LONG</option>
+          <option value="SHORT">SHORT</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Vstupní cena</label>
+        <input type="number" id="entryPrice" placeholder="0.00" step="any" />
+      </div>
+
+      <div class="form-group">
+        <label>Objem</label>
+        <input type="number" id="quantity" placeholder="0.00" step="any" />
+      </div>
+
+      <div class="form-group">
+        <label>Aktuální cena</label>
+        <input type="number" id="currentPrice" placeholder="0.00" step="any" />
+      </div>
+
+      <!-- Spot pole -->
+      <div id="spot-fields">
+        <div class="form-group">
+          <label>Stop-loss</label>
+          <input type="number" id="stopLoss" placeholder="0.00" step="any" />
+        </div>
+        <div class="form-group">
+          <label>Take-profit</label>
+          <input type="number" id="takeProfit" placeholder="0.00" step="any" />
+        </div>
+      </div>
+
+      <!-- Futures pole -->
+      <div id="futures-fields" class="hidden">
+        <div class="form-group">
+          <label>Páka (x)</label>
+          <input type="number" id="leverage" placeholder="10" step="1" />
+        </div>
+        <div class="form-group">
+          <label>Marže ($)</label>
+          <input type="number" id="marginUsed" placeholder="0.00" step="any" />
+        </div>
+      </div>
+
+      <button id="add-btn">Přidat pozici</button>
+      <p id="error-msg" class="error hidden"></p>
+    </section>
+
+    <!-- TABULKA POZIC -->
+    <section class="table-section">
+      <h2>Otevřené pozice</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Typ</th>
+              <th>Symbol</th>
+              <th>Směr</th>
+              <th>Vstup</th>
+              <th>Objem</th>
+              <th>Akt. cena</th>
+              <th>P&L</th>
+              <th>Info</th>
+              <th>Akce</th>
+            </tr>
+          </thead>
+          <tbody id="positions-tbody">
+            <tr id="empty-row">
+              <td colspan="9" class="empty">Zatím žádné pozice. Přidej první!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>TradeTracker &copy; 2025 | OOP projekt v TypeScriptu</p>
+  </footer>
+
+  <script src="dist/bundle.js"></script>
+</body>
+</html>
